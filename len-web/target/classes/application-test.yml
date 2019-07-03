@@ -1,0 +1,70 @@
+server:
+  port: 8089
+spring:
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 10.10.10.209:8848
+#        namespace: 7a8f6f81-f41a-4b97-9718-359bb564973d
+#        register-enabled: false
+  datasource:
+        url: jdbc:mysql://117.79.92.68:3306/lenos?useUnicode=true&characterEncoding=UTF-8
+        username: lenosWriterH
+      #        password: 123456
+      #        password: 1234
+        password: U0qM5LRiCBLm
+        # 使用druid数据源
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        filters: stat
+        maxActive: 20
+        initialSize: 1
+        maxWait: 60000
+        minIdle: 1
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 'x'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxOpenPreparedStatements: 20
+  http:
+      encoding:
+        force: true
+  boot:
+    admin:
+      client:
+        prefer-ip: true
+      url: http://localhost:8082
+
+mybatis:
+    type-aliases-package: com.len.entity
+    mapper-locations: classpath*:mapper/*.xml
+    check-config-location: true
+
+mapper:
+    mappers:
+        - com.len.base.BaseMapper
+    not-empty: false
+    identity: MYSQL
+
+
+# PageHelperConfig 可以替代此方案
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+logging:
+  level:
+      com.len.mapper: debug
+  config: classpath:log4j2.yml
+
+filePath: ./file/
+
+imagePath: ./image/
+
+#dubbo:
+#  registry:
+#    group: qianlima-service:dev

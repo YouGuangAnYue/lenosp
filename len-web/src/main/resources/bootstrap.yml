@@ -1,0 +1,17 @@
+server:
+  port: 8888
+
+dubbo:
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: com-qianlima-service-special-service-provider
+
+spring:
+  profiles:
+    active: mysql-dev
+  application:
+    name: len-web
+
+len-blog:
+  roles: blogAdmin
